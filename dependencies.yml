@@ -1,0 +1,105 @@
+---
+options:
+  buildHeader:
+    - load("@io_bazel_rules_scala//scala:scala_import.bzl", "scala_import")
+
+  languages:
+    - java
+    - scala:2.12.10
+
+  #transitivity: runtime_deps
+  #strictVisibility: false
+
+dependencies:
+  org.typelevel:
+    cats:
+      version: "1.2.0"
+      lang: scala
+      modules: ["core", "kernel", "macros"]
+    machinist:
+      lang: scala
+    kind-projector_2.12.10:
+      lang: scala/unmangled
+      version: "0.11.0"
+
+  org.scalikejdbc:
+    scalikejdbc:
+      version: "3.2.3"
+      lang: scala
+      modules: ["core"]
+
+  dk.cwconsult.peregrin:
+    peregrin:
+      version: "8.2.1"
+      lang: scala
+      modules: ["core"]
+
+  org.scodec:
+    scodec:
+      version: "1.1.5"
+      lang: scala
+      modules: ["bits"]
+
+  dk.cwconsult:
+    tempgres:
+      version: "1.1.0"
+      lang: java
+      modules: ["client"]
+
+  org.apache.logging.log4j:
+    log4j:
+      version: "2.11.0"
+      lang: java
+      modules: ["api", "core", "slf4j-impl"]
+
+  org.scalatest:
+    scalatest_2.12:
+      version: "3.0.5"
+      lang: scala/unmangled
+
+  org.scalactic:
+    scalactic_2.12:
+      lang: scala/unmangled
+
+  io.dropwizard.metrics:
+    metrics:
+      lang: java
+      version: "4.0.2"
+      modules: ["core"]
+
+  com.google.guava:
+    guava:
+      lang: java
+      version: "22.0"
+
+  com.typesafe.play:
+    twirl-api:
+      lang: scala
+      version: "1.4.2"
+
+  org.postgresql:
+    postgresql:
+      lang: java
+      version: "42.2.2.jre7"
+
+replacements:
+  org.scala-lang:
+    scala-library:
+      lang: scala/unmangled
+      target: "@io_bazel_rules_scala_scala_library//:io_bazel_rules_scala_scala_library"
+    scala-reflect:
+      lang: scala/unmangled
+      target: "@io_bazel_rules_scala_scala_reflect//:io_bazel_rules_scala_scala_reflect"
+    scala-compiler:
+      lang: scala/unmangled
+      target: "@io_bazel_rules_scala_scala_compiler//:io_bazel_rules_scala_scala_compiler"
+
+  org.scala-lang.modules:
+    scala-parser-combinators:
+      lang: scala
+      target:
+        "@io_bazel_rules_scala_scala_parser_combinators//:io_bazel_rules_scala_scala_parser_combinators"
+    scala-xml:
+      lang: scala
+      target:
+        "@io_bazel_rules_scala_scala_xml//:io_bazel_rules_scala_scala_xml"
